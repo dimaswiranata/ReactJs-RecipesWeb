@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 
 import { loadData } from "store/actions/data";
+import Allrecipes from "assets/images/allrecipes.png";
+
+import Swipers from "components/swiper";
 
 class LandingPages extends Component {
 
@@ -29,34 +32,13 @@ class LandingPages extends Component {
     if (!data.hasOwnProperty("data")) return null;
 
     return (
-      <div>
-        <div>{data.data.href}</div>
-        <div>{data.data.title}</div>
-        <div>{data.data.version}</div>
-        -------------------------------------
-        {
-          data.data.results.map((item, index) => {
-            return(
-              <div
-                key={`result-${index}`}
-              >
-                <div>
-                  {item.ingredients}
-                </div>
-                <div>
-                  {item.title}
-                </div>
-                <div>
-                  {item.href}
-                </div>
-                <div>
-                  {item.thumbnail}
-                </div>
-                -------------------------------------
-              </div>
-            )
-          })
-        }
+      <div className="main">
+        <div className="header">
+          {/* <h3>allrecipes </h3> */}
+          <img className="logo" src={Allrecipes} alt="logo-recipes"/>
+          <h5>What do you want to eat today?</h5>
+        </div>
+        <Swipers data={data.data.results}/>
       </div>
     )
   }
